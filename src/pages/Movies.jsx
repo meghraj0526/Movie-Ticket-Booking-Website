@@ -1,9 +1,9 @@
 import React from 'react'
 
-const movies = () => {
+const Movies = () => {
   return (
-    <div>movies</div>
+    <div>Movies</div>
   )
 }
 
-export default movies
+export default Movies
