@@ -1,27 +1,34 @@
 import React from "react"
 import Navbar from './components/Navbar'
 import Footer from "./components/Footer"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import Home from'./pages/Home'
 import Movies from './pages/Movies'
 import MoviesDetails from './pages/MovieDetail'
 import SeatLayout from './pages/SeatLayout'
 import MyBookings from "./pages/MyBookings"
+import Favorite from "./pages/Favorite"
+import { Toaster } from "react-hot-toast"
 
 
 
 const App = () =>{
+
+  const isAdminRoutes = useLocation().pathname.startsWith('/admin');
+
   return(
     <>
-    <Navbar/>
+    <Toaster/>
+    {!isAdminRoutes && <Navbar/>}
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/movies" element={<Movies/>}/>
       <Route path="/movies/:id" element={<MoviesDetails/>}/>
       <Route path="/movies/:id/:date" element={<SeatLayout/>}/>
-      <Route path="/myBookings" element={<MyBookings/>}/>
+      <Route path="/my-bookings" element={<MyBookings/>}/>
+      <Route path="/favorite" element={<Favorite/>}/>
     </Routes>
-    <Footer/>
+    {!isAdminRoutes && <Footer/>}
     </>
   )
 }
