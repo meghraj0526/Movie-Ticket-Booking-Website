@@ -1,6 +1,7 @@
 import logo from './logo.svg'
 import logo2 from './logo2.png'
-import marvelLogo from './marvelLogo.svg'
+import Dclogo from './Dclogo.png'
+import batman from './batman.jpg'
 import googlePlay from './googlePlay.svg'
 import appStore from './appStore.svg'
 import screenImage from './screenImage.svg'
@@ -9,7 +10,8 @@ import profile from './profile.png'
 export const assets = {
     logo,
     logo2,
-    marvelLogo,
+    Dclogo,
+    batman,
     googlePlay,
     appStore,
     screenImage,

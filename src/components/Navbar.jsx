@@ -87,8 +87,8 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
             <UserButton.MenuItems>
               <UserButton.Action
                 label="MyBookings"
-                labelIcon={<TicketPlus width={15}/>}
-                onClick={()=> navigate('/MyBookings')}
+                labelIcon={<TicketPlus width={15} />}
+                onClick={() => navigate("/MyBookings")}
               />
             </UserButton.MenuItems>
           </UserButton>
