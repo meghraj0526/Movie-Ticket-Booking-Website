@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full flex items-center justify-between px-6 md:px-16 lg:px-36 py-5">
-      <Link to="/" className="max-md:flex-1">
+      <Link to="/" onClick={() => scrollTo(0, 0)} className="max-md:flex-1">
         <img src={assets.logo2} alt="" className="w-80 h-auto" />
       </Link>
 
@@ -86,9 +86,9 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
           <UserButton>
             <UserButton.MenuItems>
               <UserButton.Action
-                label="MyBookings"
+                label="My Bookings"
                 labelIcon={<TicketPlus width={15} />}
-                onClick={() => navigate("/MyBookings")}
+                onClick={() => navigate("/my-bookings")}
               />
             </UserButton.MenuItems>
           </UserButton>

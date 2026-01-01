@@ -113,7 +113,7 @@ const SeatLayout = () => {
           if (selectedSeats.length === 0) {
             toast("Please select at least one seat first");
           } else {
-            navigate('/Mybookings');
+            navigate('/my-bookings');
           }
         }} className="flex items-center gap-1 mt-20 px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer active:scale-95">
           Proceed To Checkout
