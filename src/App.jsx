@@ -9,7 +9,7 @@ import SeatLayout from './pages/SeatLayout'
 import MyBookings from "./pages/MyBookings"
 import Favorite from "./pages/Favorite"
 import { Toaster } from "react-hot-toast"
-import { Layout } from "lucide-react"
+import Layout from "./pages/admin/Layout"
 import Dashboard from "./pages/admin/Dashboard"
 import AddShows from "./pages/admin/AddShows"
 import ListShows from "./pages/admin/ListShows"
