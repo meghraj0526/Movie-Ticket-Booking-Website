@@ -28,6 +28,9 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-::webkit-calender-picker-indicator{
-  filter: invert(1);
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) brightness(2);
+  -webkit-filter: invert(1) brightness(2);
+  cursor: pointer;
 }
