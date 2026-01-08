@@ -22,7 +22,7 @@ const ListShows = () => {
         }
       }]);
       setLoading(false);
-    } catch(error){
+    } catch(error)
       console.error(error);
       
     }
