@@ -29,7 +29,8 @@ const ListShows = () => {
   }
 
   useEffect(()=> {
-    getAllshows()
+    getAllshows();
+
   })
 
   return !loading ? (
