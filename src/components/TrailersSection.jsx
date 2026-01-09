@@ -7,8 +7,8 @@ import { PlayCircleIcon } from "lucide-react";
 const TrailersSection = () => {
   const [currentTrailer, setCurrentTrailer] = useState(dummyTrailers[0]);
 
-  // Function to extract video ID from YouTube 
-  const getVideoId = (url) => {URL
+  // Function to extract video ID from YouTube URL
+  const getVideoId = (url) => {
     const match = url.match(/[?&]v=([^#&?]*).*/);
     return match && match[1];
   };
