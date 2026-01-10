@@ -33,7 +33,8 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
 
         <Link
           onClick={() => {
-            scrollTo(0, 0); setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
           to="/"
         >
@@ -41,7 +42,8 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
         </Link>
         <Link
           onClick={() => {
-            scrollTo(0, 0); setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
           to="/movies"
         >
@@ -49,7 +51,8 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
         </Link>
         <Link
           onClick={() => {
-            scrollTo(0, 0); setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
           to="/"
         >
@@ -57,7 +60,8 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
         </Link>
         <Link
           onClick={() => {
-            scrollTo(0, 0); setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
           to="/"
         >
@@ -65,7 +69,8 @@ border-gray-300/20 overflow-hidden transition-[width] duration-300${
         </Link>
         <Link
           onClick={() => {
-            scrollTo(0, 0); setIsOpen(false);
+            scrollTo(0, 0);
+            setIsOpen(false);
           }}
           to="/favorite"
         >

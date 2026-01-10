@@ -10,8 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className='flex flex-col items-start justify-center gap-4 px-6 md:px-16 lg:px-36 bg-[url("/batman.jpg")] bg-cover bg-center h-screen'>
@@ -34,7 +33,10 @@ const HeroSection = () => {
         shocking secrets, Batman must confront a twisted conspiracy, test his
         limits, and face the shadowy figures controlling the city.
       </p>
-      <button onClick={()=> navigate('./Movies')} className="flex items-center gap-1 px-6 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer">
+      <button
+        onClick={() => navigate("./Movies")}
+        className="flex items-center gap-1 px-6 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer"
+      >
         Explore Movies
         <ArrowRight className="w-5 h-5" />
       </button>

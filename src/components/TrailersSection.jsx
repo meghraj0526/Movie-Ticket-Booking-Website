@@ -8,7 +8,7 @@ const TrailersSection = () => {
   const [currentTrailer, setCurrentTrailer] = useState(dummyTrailers[0]);
 
   // Function to extract video ID from YouTube URL
-  // For the Trailer 
+  // For the Trailer
   const getVideoId = (url) => {
     const match = url.match(/[?&]v=([^#&?]*).*/);
     return match && match[1];

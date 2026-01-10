@@ -39,7 +39,9 @@ const SeatLayout = () => {
       return toast("You Can Only select 5 seats");
     }
     setSelectedSeats((prev) =>
-      prev.includes(seatId) ? prev.filter(seat => seat !== seatId) : [...prev, seatId]
+      prev.includes(seatId)
+        ? prev.filter((seat) => seat !== seatId)
+        : [...prev, seatId]
     );
   };
 
@@ -109,15 +111,18 @@ const SeatLayout = () => {
             ))}
           </div>
         </div>
-        <button onClick={() => {
-          if (selectedSeats.length === 0) {
-            toast("Please select at least one seat first");
-          } else {
-            navigate('/my-bookings');
-          }
-        }} className="flex items-center gap-1 mt-20 px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer active:scale-95">
+        <button
+          onClick={() => {
+            if (selectedSeats.length === 0) {
+              toast("Please select at least one seat first");
+            } else {
+              navigate("/my-bookings");
+            }
+          }}
+          className="flex items-center gap-1 mt-20 px-10 py-3 text-sm bg-primary hover:bg-primary-dull transition rounded-full font-medium cursor-pointer active:scale-95"
+        >
           Proceed To Checkout
-          <ArrowRightIcon strokeWidth={3} className="w-4 h-4"/>
+          <ArrowRightIcon strokeWidth={3} className="w-4 h-4" />
         </button>
       </div>
     </div>

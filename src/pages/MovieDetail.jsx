@@ -105,7 +105,9 @@ const MovieDetail = () => {
         </button>
       </div>
     </div>
-  ) : <Loading />
-}
+  ) : (
+    <Loading />
+  );
+};
 
 export default MovieDetail;
