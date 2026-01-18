@@ -25,3 +25,6 @@ app.get("/", (req, res) => res.send("server is live"));
 app.listen(port, () =>
   console.log(`server listening at http://localhost:${port}`)
 );
+
+
+export default app;
