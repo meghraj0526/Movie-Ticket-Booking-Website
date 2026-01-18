@@ -9,9 +9,10 @@ import { inngest, functions } from "./inngest/index.js";
 const app = express();
 const port = 3000;
 
+app.use("/api/inngest", serve({ client: inngest, functions }));
+
 await connectDB();
 
-app.use("/api/inngest", serve({ client: inngest, functions }));
 
 //Middleware
 app.use(express.json());
