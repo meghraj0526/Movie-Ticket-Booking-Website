@@ -18,6 +18,6 @@ app.use(cors())
 app.use(clerkMiddleware())
 
 app.get('/', (req,res) => res.send('server is live'))
-app.use('/api/inggest', serve({ client: inngest, functions }))
+app.use('/api/inngest', serve({ client: inngest, functions }))
 
 app.listen(port, () => console.log(`server listening at http://localhost:${port}`));
