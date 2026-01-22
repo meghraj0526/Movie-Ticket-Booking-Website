@@ -17,6 +17,6 @@ const movieSchema = new mongoose.Schema(
     }, {timestamps: true}
 )
 
-const movie = mongoose.model('movie', movieSchema)
+// const movie = mongoose.model('movie', movieSchema)
 
 export default movie;
