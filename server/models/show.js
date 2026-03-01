@@ -3,13 +3,13 @@ import movie from "./Movie.js";
 
 const showSchema = new mongoose.Schema(
     {
-        movie: {type: String, required: true, ref: 'movie'},
-        showDataTime: {type: Date, requried: true},
-        showPrice: {type: Date, requried: true},
+        movie: {type: String, required: true, ref: 'Movie'},
+        showDateTime: {type: Date, required: true},
+        showPrice: {type: Number, required: true},
         occupiedSeats: {type: Object, default:{} },
     }, {minimize: false}
 )
 
-const show = mongoose.model("show", showSchema);
+const Show = mongoose.model("Show", showSchema);
 
-export default show;
+export default Show;

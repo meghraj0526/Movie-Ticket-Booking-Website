@@ -52,7 +52,7 @@ export const addShow = async (req, res) => {
         original_language: movieApiData.original_language,
         tagline: movieApiData.tagline || "",
         genres: movieApiData.genres,
-        casts: movieApiData.casts,
+        casts: movieCreditsData.cast,
         vote_average: movieApiData.vote_average,
         runtime: movieApiData.runtime,
       };
@@ -79,9 +79,57 @@ export const addShow = async (req, res) => {
       await Show.insertMany(showsToCreate)
     }
     res.json({ success: true, message: 'Show Added Succesfully.' });
-    
+
   } catch (error) {
     console.error(error);
     res.json({ success: false, message: error.message });
   }
 };
+
+//api to get all shows
+export const getShows = async (req, res) => {
+  try {
+    // Get all shows (including past ones) and sort by date
+    const shows = await Show.find({}).populate('movie').sort({showDateTime: 1});
+    
+    //filter unique shows using a Map with movie._id as key
+    const uniqueShowsMap = new Map();
+    shows.forEach(show => {
+      if (show.movie && !uniqueShowsMap.has(show.movie._id)) {
+        uniqueShowsMap.set(show.movie._id, show.movie);
+      }
+    });
+    
+    res.json({ success: true, shows: Array.from(uniqueShowsMap.values())});
+
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+
+//api to get a single show from the database
+export const getShow = async (req, res) => {
+  try {
+    const {movieId} = req.params;
+    //get all upcoming shows for movie
+    const shows = await Show.find({movie: movieId, showDateTime: {$gte: new Date()}})
+
+    const movie = await Movie.findById(movieId);
+    const dateTime = {};
+
+    shows.forEach((show) => {
+      const date = show.showDateTime.toISOString().split("T")[0];
+      if(!dateTime[date]){
+        dateTime[date] = []
+      }
+      dateTime[date].push({ time: show.showDateTime, showId: show._id})
+    })
+
+    res.json({success: true, movie, dateTime})
+  } catch (error) {
+    console.error(error);
+    res.json({ success: false, message: error.message });
+  }
+}
