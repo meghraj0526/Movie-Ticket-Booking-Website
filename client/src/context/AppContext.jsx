@@ -9,30 +9,34 @@ axios.defaults.baseURL = import.meta.env.VITE_BASE_URL
 export const AppContext = createContext()
 
 export const AppProvider = ({ children }) => {
-
     const [isAdmin, setIsAdmin] = useState(false)
     const [shows, setShows] = useState([])
-    const [favroiteMovies, setFavroiteMovies] = useState([])
+    const [favoriteMovies, setFavoriteMovies] = useState([])
 
     const {user} = useUser()
     const {getToken} = useAuth()
     const location = useLocation()
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
-
-    const fetchIsAdmin = async () => {
+const fetchIsAdmin = async () => {
         try {
             const {data} = await axios.get('/api/admin/is-admin', {headers: {
                 Authorization: `Bearer ${await getToken()}`
             }})
-            setIsAdmin(data.isAdmin)
-
-            if (!data.isAdmin && location.pathname.startsWith('/admin')) {
-                navigate('/')
-                toast.error('Your Not Authorized to access admin dashboard')
+            if (data.success) {
+                setIsAdmin(!!data.isAdmin);
+            } else {
+                toast.error(data.message || "Admin check failed");
+                if (location.pathname.startsWith('/admin')) {
+                    navigate('/');
+                }
             }
         } catch (error) {
-            console.error(error)
+            console.error(error);
+            toast.error("Admin authentication failed");
+            if (location.pathname.startsWith('/admin')) {
+                navigate('/');
+            }
         }
     }
 
@@ -51,12 +55,12 @@ export const AppProvider = ({ children }) => {
 
     const fetchFavoriteMovies = async ()=>{
         try {
-            const { data } = await axios.get('/api/user/favroites',{headers: {
+            const { data } = await axios.get('/api/user/favorites',{headers: {
                 Authorization: `Bearer ${await getToken()}`
             }})
 
             if(data.success){
-                setFavroiteMovies(data.movies)
+                setFavoriteMovies(data.movies)
             }else{
                 toast.error(data.message)
             }
@@ -64,7 +68,6 @@ export const AppProvider = ({ children }) => {
             console.error(error)
         }
     }
-
 
     useEffect(()=>{
         fetchShows()
@@ -80,8 +83,13 @@ export const AppProvider = ({ children }) => {
     const value = {
         axios,
         fetchIsAdmin,
-        user, getToken, navigate, isAdmin, shows, 
-        favroiteMovies, fetchFavoriteMovies
+        user, 
+        getToken, 
+        navigate, 
+        isAdmin, 
+        shows, 
+        favoriteMovies, 
+        fetchFavoriteMovies
     }
     return (
         <AppContext.Provider value={value}>
