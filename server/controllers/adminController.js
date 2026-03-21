@@ -1,6 +1,6 @@
 import Booking from "../models/Booking.js";
 import Show from "../models/show.js";
-import user from "../models/user.js";
+import User from "../models/user.js";
 
 //api to check if user is admin
 export const isAdmin = async (req, res) => {
@@ -14,9 +14,9 @@ export const getDashboardData = async (req, res) => {
     const activeShows = await Show.find({
       showDateTime: { $gte: new Date() }}).populate("movie");
 
-    const totalUser = await user.countDocuments();
+    const totalUser = await User.countDocuments();
 
-    const getDashboardData = {
+    const dashboardData = {
       totalBookings: bookings.length,
       totalRevenue: bookings.reduce((acc, booking) => acc + booking.amount, 0),
       activeShows,
@@ -45,7 +45,7 @@ export const getAllShows = async (req, res) => {
 //api to get all bookings
 export const getAllBookings = async (req, res) => {
   try {
-    const bookings = Booking.find({})
+    const bookings = await Booking.find({})
       .populate("user")
       .populate({
         path: "show",

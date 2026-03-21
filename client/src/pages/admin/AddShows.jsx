@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Title from "../../components/admin/Title";
-import { dummyShowsData } from "../../assets/assets";
 import Loading from "../../components/Loading";
 import { CheckIcon, DeleteIcon, StarIcon } from "lucide-react";
 import { kConverter } from "../../lib/kconverter";
 import { useAppContext } from "../../context/AppContext";
+import toast from "react-hot-toast";
 
 const AddShows = () => {
 
-  const {axios, getToken, user} = useAppContext()
+  const {axios, getToken, user, image_base_url} = useAppContext()
 
   const currency = import.meta.env.VITE_CURRENCY;
 
   const [nowPlayingMovies, setNowPlayingMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [dateTimeSelection, setdateTimeSelection] = useState([]);
+  const [dateTimeSelection, setdateTimeSelection] = useState({});
   const [dateTimeInput, setdateTimeInput] = useState("");
   const [showPrice, setShowPrice] = useState("");
+  const [addingShow, setAddingShow] = useState(false);
 
   const fetchNowPlayingMovies = async () => {
     try {
@@ -58,9 +59,46 @@ const AddShows = () => {
     });
   };
 
+  const handleSubmit = async () =>{
+    try {
+      setAddingShow(true)
+
+      if(!selectedMovie || Object.keys(dateTimeSelection).length == 0 || !showPrice){
+        setAddingShow(false)
+        return toast('Missing required fields');
+      }
+
+      const showInput = Object.entries(dateTimeSelection).map(([date, time]) => ({date, time}))
+
+      const payload = {
+        movieId: selectedMovie,
+        showsInput: showInput,
+        showPrice: Number(showPrice)
+      }
+
+      const { data } = await axios.post('/api/shows/add', payload,  {headers: {
+        Authorization: `Bearer ${await getToken()}`}})
+
+      if(data.success){
+        toast.success(data.message)
+        setSelectedMovie(null)
+        setdateTimeSelection({})
+        setShowPrice("")
+      }else{
+        toast.error(data.message)
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error('an error occurred. please try again')
+    }
+    setAddingShow(false)
+  }
+
   useEffect(() => {
-    fetchNowPlayingMovies();
-  }, []);
+    if(user){
+      fetchNowPlayingMovies();
+    }
+  }, [user]);
 
   return nowPlayingMovies.length > 0 ? (
     <>
@@ -76,7 +114,7 @@ const AddShows = () => {
             >
               <div className="relative rounded-lg overflow-hidden">
                 <img
-                  src={movie.poster_path}
+                  src={image_base_url + movie.poster_path}
                   alt=""
                   className="w-full object-cover brightness-90"
                 />
@@ -166,7 +204,7 @@ const AddShows = () => {
           </ul>
         </div>
       )}
-      <button className="bg-primary text-white px-8 py-2 mt-6 rounded hover:bg-primary/90 transition-all cursor-pointer">
+      <button onClick={handleSubmit} disabled={addingShow} className="bg-primary text-white px-8 py-2 mt-6 rounded hover:bg-primary/90 transition-all cursor-pointer">
         Add Show
       </button>
     </>
