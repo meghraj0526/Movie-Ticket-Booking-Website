@@ -75,7 +75,7 @@ const SeatLayout = () => {
 
   const getOccupiedSeats = async ()=> {
     try {
-      const { data } = await axios.get(`/api/bookings/seats/${selectedTime.showId}`)
+      const { data } = await axios.get(`/api/booking/seats/${selectedTime.showId}`)
       if(data.success){
         setOccupiedSeats(data.occupiedSeats)
       }else{
@@ -98,8 +98,7 @@ const SeatLayout = () => {
       }, {headers: { Authorization: `Bearer ${await getToken()}`}})
 
       if(data.success){
-        toast.success(data.message)
-        navigate('/my-bookings')
+        window.location.href = data.url;
       }else{
         toast.error(data.message)
       }
