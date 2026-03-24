@@ -68,7 +68,7 @@ const releaseSeatsAndDeleteBooking = inngest.createFunction(
       //if payment is not made release seats and delete booking
       if (!booking.isPaid) {
         const show = await Show.findById(booking.show);
-        booking.bookedSeat.forEach(() => {
+        booking.bookedSeats.forEach((seat) => {
           delete show.occupiedSeats[seat];
         });
         show.markModified("occupiedSeats");
@@ -96,7 +96,7 @@ const sendBookingConfirmationEmail = inngest.createFunction(
 
     await sendEmail({
       to: booking.user.email,
-      subject: `Payment Confirmation: "${booking.show.movie.tittle} booked!"`,
+      subject: `Payment Confirmation: "${booking.show.movie.title} booked!"`,
       body: `<div style="font-family: Arial, sans-serif; line-height: 1.5;">
                         <h2>Hi ${booking.user.name},</h2>
                         <p>Your booking for <strong style="color: #F84565;">"${booking.show.movie.title}"</strong> is confirmed.</p>
