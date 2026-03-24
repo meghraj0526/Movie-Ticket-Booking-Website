@@ -20,6 +20,7 @@ const sendEmail = async ({to, subject, body})=>{
         html: body,
     })
     return response
+    
 }
 
 export default sendEmail;
