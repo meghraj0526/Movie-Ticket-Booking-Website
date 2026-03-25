@@ -8,7 +8,7 @@ const Footer = () => {
                 <div className="md:max-w-96">
                     <img alt="" class="h-11" src={assets.logo2}/>
                     <p className="mt-6 text-sm">
-                        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                        Cinephile Club provides a seamless movie booking experience, helping users find films, browse showtimes, and reserve tickets online without hassle.
                     </p>
                     <div className="flex items-center gap-2 mt-4">
                         <img src={assets.googlePlay} alt="google play" className="h-9 w-auto" />
@@ -28,8 +28,8 @@ const Footer = () => {
                     <div>
                         <h2 className="font-semibold mb-5">Get in touch</h2>
                         <div className="text-sm space-y-2">
-                            <p>+91 4438454833</p>
-                            <p>contact@example.com</p>
+                            <p>+91 8530072969</p>
+                            <p>khanatmeghraj@gmail.com</p>
                         </div>
                     </div>
                 </div>

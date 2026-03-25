@@ -77,7 +77,7 @@ const fetchIsAdmin = async () => {
 
     useEffect(()=> {
         if(user){
-            fetchIsAdmin()
+            // fetchIsAdmin()
             fetchFavoriteMovies()
         }
     },[user])
