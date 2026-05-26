@@ -53,10 +53,12 @@ const SeatLayout = () => {
   };
 
   const renderSeats = (row, count = 9) => (
-    <div key={row} className="flex gap-2 mt-2">
+    <div key={row} className="xcxx flex gap-2 mt-2">
       <div className="flex flex-wrap items-center justify-center gap-2">
         {Array.from({ length: count }, (_, id) => {
           const seatId = `${row}${id + 1}`;
+          console.log(seatId,row);
+          
           return (
             <button
               key={seatId}
@@ -152,7 +154,7 @@ const SeatLayout = () => {
             {groupRows[0].map((row) => renderSeats(row))}
           </div>
 
-          <div className="grid grid-cols-2 gap-11">
+          <div className="abc grid grid-cols-3 gap-11">
             {groupRows.slice(1).map((group, idx) => (
               <div key={idx}>{group.map((row) => renderSeats(row))}</div>
             ))}

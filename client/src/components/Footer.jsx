@@ -29,7 +29,7 @@ const Footer = () => {
                         <h2 className="font-semibold mb-5">Get in touch</h2>
                         <div className="text-sm space-y-2">
                             <p>+91 8530072969</p>
-                            <p>khanatmeghraj@gmail.com</p>
+                            <p>Aditya, Om, Meghraj and Swami</p>
                         </div>
                     </div>
                 </div>
